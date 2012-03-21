@@ -28,7 +28,7 @@ class AchievementRegistery(object):
         if hasattr(achievement, field.name):
           setattr(achievement_db, str(field.name), getattr(achievement, field.name))
         else:
-          setattr(achievement_db, str(field.name), field.default)  
+          setattr(achievement_db, str(field.name), field.default)
       
       achievement_db.save()
     

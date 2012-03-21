@@ -23,7 +23,6 @@ class Achievement(models.Model):
   points         = models.IntegerField(default=0, help_text="Points earned for unlocking this achievement.")
   secret         = models.BooleanField(default=0, help_text="The achievement is visible to a user but does not reveal its title, description, or points until the user has unlocked it")
   invisible      = models.BooleanField(default=0, help_text="The achievement is NOT visible to a user, untill unlocked")
-  level          = models.IntegerField(default=1, choices=LEVEL_CHOICES) # Could make this a many to many field?
   image_locked   = models.ImageField(upload_to='achievements', default='achievements/images/default-locked.jpg')
   image_unlocked = models.ImageField(upload_to='achievements', default='achievements/images/default-unlocked.jpg')
   image_secret   = models.ImageField(upload_to='achievements', default='achievements/images/default-hidden.jpg')
