@@ -5,7 +5,7 @@ from django.views.decorators.cache import cache_page
 from hero.models import Achievement
 
 urlpatterns = patterns('',
-  url(r'^achievements.html$', ListView.as_view(
+  url(r'^all.html$', ListView.as_view(
               queryset=Achievement.objects.all(),
               context_object_name='listObject',
               template_name='hero/achievements.html')),

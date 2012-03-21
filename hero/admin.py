@@ -4,7 +4,7 @@ from django import forms
 
 class AchievementAdmin(admin.ModelAdmin):
     #fields = ('id',)
-    list_display = ('title', 'description')
-    readonly_fields = ('title', 'description', 'id', 'secret', 'points', 'invisible', 'level', 'image_locked','image_unlocked', 'image_secret',)
+    list_display = ('title', 'description', 'secret', 'invisible',)
+    readonly_fields = ('title', 'description', 'id', 'secret', 'invisible', 'image_locked', 'image_unlocked', 'image_secret',)
 
 admin.site.register(Achievement, AchievementAdmin)

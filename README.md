@@ -51,7 +51,6 @@ A achievement object might look like this:
       id          = "comments_50"
       title       = "50 comments ja"
       description = "User has posted 50 comments"
-      points      = 500
       secret      = False
       hidden      = False
       image_locked   = 'achievements/images/default-locked.jpg'
