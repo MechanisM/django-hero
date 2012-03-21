@@ -3,7 +3,6 @@ from django.db import models
 from datetime import *
 from django.contrib.auth.models import User
 from django.conf import settings
-from hero import autodiscover
 from hero.managers import AchievementManager
 from hero.signals import achievement_unlocked
 
