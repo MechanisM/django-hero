@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block center %}
+
+{% for obj in listObject %}
+<div>
+  <a href="{{obj.get_absolute_url}}">{{obj.title}}</a>
+  {{obj.description}}
+  {% thumbnail item.image "100x100" crop="center" as im %}
+      <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+  {% endthumbnail %}
+</div>
+{% endfor %}
+{% endblock %}
