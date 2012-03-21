@@ -41,7 +41,7 @@ A achievement object might look like this:
     
     class TestAchievement(object):
       '''
-      Achievement value's
+      Achievement attribute's
       '''
       id          = "comments_50"
       level       = 1
@@ -71,9 +71,9 @@ A achievement object might look like this:
 
 There are a few relevant attributes and methods here.
 
-.. attribute:: id
+*   attribute:: id
 
-  The unique identifier for this 'Achievement', it should never change.
+    The unique identifier for this 'Achievement', it should never change.
 
 - Sjoerd Arendsen
 
