@@ -1,0 +1,2 @@
+class AchievementBase(object):
+  pass

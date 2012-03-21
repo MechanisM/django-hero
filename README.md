@@ -30,7 +30,7 @@ Optional: Hook up hero to your URLconf for some default views.
 SETTINGS
 ------------
 
-ACHIEVEMENT_LEVEL_CHOICES
+ACHIEVEMENT_LEVELS = ('White', 'Brown')
 
 default:  Bronze, Silver, Gold, Diamond
 
@@ -43,20 +43,21 @@ Here you will define your custom achievements.
 A achievement object might look like this:
 
     from hero import achievements
+    from hero.models import AchievementBase, AchievementUnlocked
     
-    class TestAchievement(object):
+    class TestAchievement(AchievementBase):
       '''
       Achievement attribute's
       '''
-      id          = "comments_50"
-      title       = "50 comments ja"
-      description = "User has posted 50 comments"
-      secret      = False
-      hidden      = False
+      id             = "comments_50"
+      title          = "50 comments"
+      description    = "User has posted 50 comments"
+      secret         = False
+      hidden         = False
       image_locked   = 'achievements/images/default-locked.jpg'
       image_unlocked = 'achievements', default='achievements/images/default-unlocked.jpg'
       image_secret   = 'achievements/images/default-hidden.jpg'
-  
+
       '''
       Event's on wich this achievement should be called
       '''
@@ -71,9 +72,9 @@ A achievement object might look like this:
         user = state["user"]
         points = 5000
         if points == 5000:
-          return AchievementUnlocked()
+          return AchievementUnlocked(level=1)
     
-    # Register te achievement
+    # Register achievement
     achievements.register(TestAchievement)
 
 There are a few relevant attributes and methods here.
@@ -117,9 +118,16 @@ There are a few relevant attributes and methods here.
 *   method:: unlock :: required
 
     This method returns whether or not this achievement should be unlocked for a user.
-    'state' is guarnteed to have a "user" key, as well as any other
-    custom data you provide.  It should return either a 'AchievementUnlocked'
-    instance, or 'None'.
+    'state' is guaranteed to have a "user" key, as well as any other
+    custom data you provide. It should return either a AchievementUnlocked instance, or 'None'.
+
+Now just call the acchievements.unlock method for an event. 
+Any achievement registered with the given event will get it's "unlock" method called and unlock it for a user if validates.
+
+    import hero
+
+    hero.achievements.unlock("points_awarded", user=request.user) 
+    
 
 Achievement's are saved to the DB aswell. This way you can use Django's ORM to query achievements.
 
