@@ -79,43 +79,43 @@ A achievement object might look like this:
 
 There are a few relevant attributes and methods here.
 
-*   attribute:: id
+*   attribute:: id :: required
 
     The unique identifier for the 'Achievement', it should never change.
     
-*   attribute:: title
+*   attribute:: title :: required
 
     Title for this achievement
 
-*   attribute:: description
+*   attribute:: description :: optional
 
     Description for this achievement
 
-*   attribute:: secret
+*   attribute:: secret :: optional
 
     Secret achievement flag. Secret achievements should not be revealed untill a user unlocked it.
 
-*   attribute:: hidden
+*   attribute:: hidden :: optional
 
     Hidden achievement flag. Hidden achievements should not be revealed untill a user unlocked it, neither does it shows as a secret achievement in listings.
     
-*   attribute:: image_locked
+*   attribute:: image_locked :: optional
 
     Override default locked achievement image
 
-*   attribute:: image_unlocked
+*   attribute:: image_unlocked :: optional
 
     Override default unlocked achievement image
 
-*   attribute:: image_secret
+*   attribute:: image_secret :: optional
 
     Override default hidden achievement image
     
-*   attribute:: events
+*   attribute:: events :: optional
 
     A list of events that can possibly trigger this achievement to be unlocked.
 
-*   method:: unlock
+*   method:: unlock :: required
 
     This method returns whether or not this achievement should be unlocked for a user.
     'state' is guarnteed to have a "user" key, as well as any other
