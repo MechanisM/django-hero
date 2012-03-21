@@ -49,9 +49,9 @@ A achievement object might look like this:
       Achievement attribute's
       '''
       id          = "comments_50"
-      points      = 500
       title       = "50 comments ja"
       description = "User has posted 50 comments"
+      points      = 500
       secret      = False
       hidden      = False
       image_locked   = 'achievements/images/default-locked.jpg'
@@ -65,7 +65,7 @@ A achievement object might look like this:
         "points_awarded",
       ]
       
-      def validate_unlock(self, **state):
+      def unlock(self, **state):
         '''
         Validates unlock requirements
         '''
@@ -93,7 +93,7 @@ There are a few relevant attributes and methods here.
 
 *   attribute:: secret
 
-    Secret achievement flag.Secret achievements should not be revealed untill a user unlocked it.
+    Secret achievement flag. Secret achievements should not be revealed untill a user unlocked it.
 
 *   attribute:: hidden
 
@@ -101,17 +101,27 @@ There are a few relevant attributes and methods here.
     
 *   attribute:: image_locked
 
-    Override locked achievement default image
+    Override default locked achievement image
 
 *   attribute:: image_unlocked
 
-    Override unlocked achievement default image
+    Override default unlocked achievement image
 
 *   attribute:: image_secret
 
-    Override hidden achievement default image  
+    Override default hidden achievement image
+    
+*   attribute:: events
 
-Achievement's are saved to the DB. This way you can use Django's ORM to query your achievements.
+    A list of events that can possibly trigger this achievement to be unlocked.
+
+*   method:: unlock
+
+    This method returns whether or not this achievement should be unlocked for a user.
+    'state' is guarnteed to have a "user" key, as well as any other
+    custom data you provide.  It should return either a 'AchievementUnlocked'
+    instance, or 'None'.
+
+Achievement's are saved to the DB aswell. This way you can use Django's ORM to query achievements.
 
 - Sjoerd Arendsen
-

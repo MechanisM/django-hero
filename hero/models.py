@@ -20,7 +20,7 @@ class Achievement(models.Model):
   id             = models.CharField(max_length=255, primary_key=True, editable=False, unique=True)
   title          = models.CharField(max_length=255)
   description    = models.TextField(null=False)
-  points         = models.IntegerField(default=0, help_text="Points earned for unlocking this achievement.")
+  #points         = models.IntegerField(default=0, help_text="Points earned for unlocking this achievement.")
   secret         = models.BooleanField(default=0, help_text="The achievement is visible to a user but does not reveal its title, description, or points until the user has unlocked it")
   invisible      = models.BooleanField(default=0, help_text="The achievement is NOT visible to a user, untill unlocked")
   image_locked   = models.ImageField(upload_to='achievements', default='achievements/images/default-locked.jpg')
