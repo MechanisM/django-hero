@@ -17,14 +17,14 @@ else:
   )
 
 class Achievement(models.Model):
-  id             = models.CharField(max_length=255, editable=False, primary_key=True, unique=True)
-  title          = models.CharField(max_length=255)
-  description    = models.TextField(null=False)
-  secret         = models.BooleanField(default=0, help_text="The achievement is visible to a user but does not reveal its title, description, or points until the user has unlocked it")
-  invisible      = models.BooleanField(default=0, help_text="The achievement is NOT visible to a user, untill unlocked")
-  image_locked   = models.ImageField(upload_to='achievements', default='achievements/images/default-locked.jpg')
-  image_unlocked = models.ImageField(upload_to='achievements', default='achievements/images/default-unlocked.jpg')
-  image_secret   = models.ImageField(upload_to='achievements', default='achievements/images/default-hidden.jpg')
+  id = models.CharField(max_length=255, editable=False, primary_key=True, unique=True)
+  #title          = models.CharField(max_length=255)
+  #description    = models.TextField(null=False)
+  #secret         = models.BooleanField(default=0, help_text="The achievement is visible to a user but does not reveal its title, description, or points until the user has unlocked it")
+  #invisible      = models.BooleanField(default=0, help_text="The achievement is NOT visible to a user, untill unlocked")
+  #image_locked   = models.ImageField(upload_to='achievements', default='achievements/images/default-locked.jpg')
+  #image_unlocked = models.ImageField(upload_to='achievements', default='achievements/images/default-unlocked.jpg')
+  #image_secret   = models.ImageField(upload_to='achievements', default='achievements/images/default-hidden.jpg')
   #meta_object    = PickledObjectField()
   
   objects = AchievementManager()
@@ -33,6 +33,14 @@ class Achievement(models.Model):
   def meta_achievement(self):
     from hero import achievements
     return achievements._registry[self.id]
+  
+  @property
+  def title(self):
+    return self.meta_achievement.title
+  
+  @property
+  def description(self):
+    return self.meta_achievement.description
   
   def unlock(self, **state):
     '''
@@ -57,7 +65,7 @@ class Achievement(models.Model):
     return unlocked_achievement
   
   def image(self):
-    return self.image_locked
+    return self.meta_achievement.image_locked
   
   def is_unlocked(self, user):
     '''
@@ -76,7 +84,3 @@ class AchievementUnlocked(models.Model):
   user        = models.ForeignKey(User, related_name="achievements_unlocked")
   unlocked_at = models.DateTimeField(default=datetime.now)
   level       = models.IntegerField()
-
-# Just a placeholder for now
-class AchievementBase(object):
-  pass

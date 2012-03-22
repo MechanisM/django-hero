@@ -1,1 +1,1 @@
-from hero.internals import achievements, autodiscover 
+from hero.internals import achievements, autodiscover, AchievementMeta

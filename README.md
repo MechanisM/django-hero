@@ -42,8 +42,8 @@ Here you will define your custom achievements.
 
 A achievement object might look like this:
 
-    from hero import achievements
-    from hero.models import AchievementBase, AchievementUnlocked
+    from hero import AchievementMeta
+    from hero.models import AchievementUnlocked
     
     class TestAchievement(AchievementBase):
       '''
@@ -53,9 +53,9 @@ A achievement object might look like this:
       title          = "50 comments"
       description    = "User has posted 50 comments"
       secret         = False
-      hidden         = False
+      invisible      = False
       image_locked   = 'achievements/images/default-locked.jpg'
-      image_unlocked = 'achievements', default='achievements/images/default-unlocked.jpg'
+      image_unlocked = 'achievements/images/default-unlocked.jpg'
       image_secret   = 'achievements/images/default-hidden.jpg'
 
       '''
@@ -73,9 +73,6 @@ A achievement object might look like this:
         points = 5000
         if points == 5000:
           return AchievementUnlocked(level=1)
-    
-    # Register achievement
-    achievements.register(TestAchievement)
 
 There are a few relevant attributes and methods here.
 
@@ -93,11 +90,11 @@ There are a few relevant attributes and methods here.
 
 *   attribute:: secret :: optional
 
-    Secret achievement flag. Secret achievements should not be revealed untill a user unlocked it.
+    The achievement is visible for a user but does not reveal its title, description, etc untill the user unlocks it.
 
-*   attribute:: hidden :: optional
+*   attribute:: invisible :: optional
 
-    Hidden achievement flag. Hidden achievements should not be revealed untill a user unlocked it, neither does it shows as a secret achievement in listings.
+    Unvisible achievement. Invisible achievements should not be revealed untill a user unlocked it, neither does it shows as a secret achievement in listings.
     
 *   attribute:: image_locked :: optional
 
