@@ -27,12 +27,13 @@ Optional: Hook up hero to your URLconf for some default views.
       url(r"^achievements/", include("hero.urls"))
     )
 
-SETTINGS
+AVAILABLE SETTINGS
 ------------
 
-ACHIEVEMENT_LEVELS = ('White', 'Brown')
-
-default:  Bronze, Silver, Gold, Diamond
+ACHIEVEMENT_LEVELS         = (=((1, "Bronze"), (2, "Silver"), (3, "Gold"),(4, "Diamond"),))
+ACHIEVEMENT_IMAGE_LOCKED   = (='achievements/images/default-locked.jpg')
+ACHIEVEMENT_IMAGE_UNLOCKED = (='achievements/images/default-unlocked.jpg')
+ACHIEVEMENT_IMAGE_SECRET   = (='achievements/images/default-secret.jpg')
 
 USAGE
 ------------
@@ -94,7 +95,7 @@ There are a few relevant attributes and methods here.
 
 *   attribute:: invisible :: optional
 
-    Unvisible achievement. Invisible achievements should not be revealed untill a user unlocked it, neither does it shows as a secret achievement in listings.
+    Invisible achievement. Invisible achievements should not be revealed untill a user unlocked it, neither does it shows as a secret achievement in listings.
     
 *   attribute:: image_locked :: optional
 
