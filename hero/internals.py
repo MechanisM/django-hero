@@ -33,6 +33,9 @@ class AchievementRegistery(object):
     unlocks = {}
     user    = state["user"]
 
+    if not user.is_authenticated():
+      return # Not anonymous
+
     for achievement_id in self._event_registry[event]:
        achievement = Achievement.objects.get(id=achievement_id)
        unlocked = achievement.unlock(**state)
